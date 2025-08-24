@@ -9,25 +9,25 @@ import java.io.IOException;
 
 public class HttpClientHandler {
 
-    public void fetchData() {
-        HttpClient httpClient = HttpClient.newBuilder()
-            .connectTimeout(Duration.ofSeconds(5))
-            .followRedirects(HttpClient.Redirect.NORMAL)
-            .build();
+  public void fetchData() {
+    HttpClient httpClient = HttpClient.newBuilder()
+        .connectTimeout(Duration.ofSeconds(5))
+        .followRedirects(HttpClient.Redirect.NORMAL)
+        .build();
 
-        HttpRequest httpRequest = HttpRequest.newBuilder()
-            .uri(URI.create("https://jsonplaceholder.typicode.com/todos/1"))
-            .timeout(Duration.ofSeconds(10))
-            .header("Accept", "application/json")
-            .GET()
-            .build();
+    HttpRequest httpRequest = HttpRequest.newBuilder()
+        .uri(URI.create("https://jsonplaceholder.typicode.com/todos/1"))
+        .timeout(Duration.ofSeconds(10))
+        .header("Accept", "application/json")
+        .GET()
+        .build();
 
-        try {
-            HttpResponse<String> httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-            System.out.println(httpResponse.statusCode());
-            System.out.println(httpResponse.body());
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
+    try {
+      HttpResponse<String> httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+      System.out.println(httpResponse.statusCode());
+      System.out.println(httpResponse.body());
+    } catch (IOException | InterruptedException e) {
+      e.printStackTrace();
     }
+  }
 }
